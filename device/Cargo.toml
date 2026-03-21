@@ -1,0 +1,44 @@
+[package]
+name = "device"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace =  true
+
+[[bin]]
+name = "device"
+path = "./src/bin/main.rs"
+
+[dependencies]
+esp-hal.workspace = true
+esp-rtos.workspace = true
+defmt.workspace = true
+esp-bootloader-esp-idf.workspace = true
+bt-hci.workspace = true
+embassy-executor.workspace = true
+embassy-time.workspace = true
+embedded-io.workspace = true
+embedded-io-async.workspace = true
+embassy-futures.workspace = true
+embassy-sync.workspace = true
+esp-alloc.workspace = true
+esp-radio.workspace = true
+panic-rtt-target.workspace = true
+rtt-target.workspace = true
+trouble-host.workspace = true
+critical-section.workspace = true
+static_cell.workspace = true
+
+
+[profile.dev]
+# Rust debug is too slow.
+# For debug builds always builds with some optimization
+opt-level = "s"
+
+[profile.release]
+codegen-units    = 1     # LLVM can perform better optimizations using a single thread
+debug            = 2
+debug-assertions = false
+incremental      = false
+lto              = 'fat'
+opt-level        = 's'
+overflow-checks  = false
