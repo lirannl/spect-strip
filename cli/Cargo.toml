@@ -1,0 +1,15 @@
+[package]
+name = "cli"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
+[[bin]]
+name = "spect"
+path = "./src/main.rs"
+
+[dependencies]
+btleplug = "0.11"
+clap = { version = "4", features = ["derive"] }
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "time", "macros"] }
+uuid = "1"
